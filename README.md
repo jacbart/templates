@@ -2,7 +2,19 @@
 
 >inspired by https://github.com/akirak/flake-templates
 
-## List of templates
+### common commands
+
+**List available templates**
+```sh
+nix flake show 'github:jacbart/templates'
+```
+
+**Update local version** - the `init` command won't auto update the templates
+```sh
+nix flake update 'github:jacbart/templates'
+```
+
+## List of project templates
 
 ### [rust](./rust/flake.nix)
 
