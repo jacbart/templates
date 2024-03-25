@@ -21,13 +21,13 @@
             };
 
             rustPkgs = rustPlatform.buildRustPackage {
-                pname = "main-rs";
+                pname = "BIN_NAME";
                 version = "0.0.1";
                 src = ./.;
                 cargoLock.lockFile = ./Cargo.lock;
                 meta = with pkgs.lib; {
                     description = "description placeholder";
-                    homepage = "github.com/jacbart/main-rs";
+                    homepage = "github.com/jacbart/BIN_NAME";
                     license = with licenses; [ mit ];
                     maintainers = with maintainers; [ jacbart ];
                 };

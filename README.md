@@ -10,6 +10,7 @@ minimal flake for a rust project
 
 ```sh
 nix flake init -t 'github:jacbart/templates#rust'
+rg 'BIN_NAME' {Cargo.toml,flake.nix,.gitignore} # lists where to replace BIN_NAME with your binary name
 ```
 
 ### ~~[go](./go/flake.nix)~~
