@@ -1,7 +1,7 @@
 {
   description = "collection of project templates";
 
-  output = {...}: {
+  outputs = {...}: {
     templates = {
       rust = {
         path = ./rust;

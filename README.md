@@ -9,7 +9,7 @@
 minimal flake for a rust project
 
 ```sh
-nix flake init -t github:jacbart/templates#rust
+nix flake init -t 'github:jacbart/templates#rust'
 ```
 
 ### ~~[go](./go/flake.nix)~~
@@ -17,5 +17,5 @@ nix flake init -t github:jacbart/templates#rust
 minimal flake for a go project
 
 ```sh
-nix flake init -t github:jacbart/templates#go
+nix flake init -t 'github:jacbart/templates#go'
 ```
