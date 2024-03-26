@@ -44,6 +44,16 @@
         '';
       };
     };
-    templates.default = templates.minimal;
+    templates.default = { 
+      path = ./minimal;
+      description = "Minimal flake project template";
+      welcomeText = ''
+        # Welcome to the minimal project template!
+
+        This template is a simple starting point for a new flake managed projects. It includes a README.md, gitignore and a envrc to enable flake using direnv.
+
+        >Add build inputs or shell hooks to the flake.nix file to customize the devShell.  
+      '';
+    };
   };
 }
