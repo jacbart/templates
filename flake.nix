@@ -44,6 +44,6 @@
         '';
       };
     };
-    template.default = templates.minimal;
+    templates.default = templates.minimal;
   };
 }
