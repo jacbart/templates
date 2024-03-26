@@ -1,7 +1,5 @@
 # templates
 
->inspired by https://github.com/akirak/flake-templates
-
 ### common commands
 
 **List available templates**
@@ -25,9 +23,9 @@ nix flake init -t 'github:jacbart/templates#rust'
 rg 'BIN_NAME' {Cargo.toml,flake.nix,.gitignore} # lists where to replace BIN_NAME with your binary name
 ```
 
-### ~~[go](./go/flake.nix)~~
+### [go](./go/flake.nix)
 
-minimal flake for a go project
+minimal flake for a golang project
 
 ```sh
 nix flake init -t 'github:jacbart/templates#go'

@@ -10,28 +10,24 @@
           # Welcome to the Rust project template!
 
           This template is a simple starting point for a new Rust project. It includes a Cargo.toml file with some common dependencies and a simple main.rs file that prints "Hello, world!".
-          To build and run the project, use the following commands:
+          Replace `BIN_NAME` with the name of your binary in the Cargo.toml file and the main.rs file.
           ```sh
-          cargo build
-          cargo run
+          rg 'BIN_NAME' {Cargo.toml,flake.nix,.gitignore}
           ```
-          You can also run the tests with:
-          ```sh
-          cargo test
-          ```
-          For more information about Rust and Cargo, check out the official documentation at https://doc.rust-lang.org/cargo/.
+          >For more information about Rust and Cargo, check out the official documentation at https://doc.rust-lang.org/cargo/.
         '';
       };
       go = {
         path = ./go;
-        description = "Go project template";
+        description = "Golang project template";
         welcomeText = ''
-          # Welcome to the Go project template!
+          # Welcome to the Golang project template!
 
-          This template is a simple starting point for a new Nix Go project. To set go run the below command
+          This template is a simple starting point for a new Nix Go project. To setup the go project run the below command
           ```sh
-          go mod init github.com/jacbart/projectname
+          go mod init github.com/username/projectname
           ```
+          >Edit the `flake.nix` file to rename the binary, add dependencies and build instructions.
         '';
       };
     };

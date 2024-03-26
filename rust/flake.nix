@@ -28,7 +28,7 @@
                 meta = with pkgs.lib; {
                     description = "description placeholder";
                     homepage = "github.com/jacbart/BIN_NAME";
-                    license = with licenses; [ mit ];
+                    license = with licenses; [ mpl20 ];
                     maintainers = with maintainers; [ jacbart ];
                 };
             };
