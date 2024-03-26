@@ -14,6 +14,14 @@ nix flake update 'github:jacbart/templates'
 
 ## List of project templates
 
+### [default](./minimal/flake.nix)
+
+minimal flake managed project
+
+```sh
+nix flake init -t 'github:jacbart/templates'
+```
+
 ### [rust](./rust/flake.nix)
 
 minimal flake for a rust project
