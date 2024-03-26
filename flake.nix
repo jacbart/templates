@@ -3,9 +3,20 @@
 
   outputs = {...}: {
     templates = {
+      minimal = {
+        path = ./minimal;
+        description = "Minimal flake project template";
+        welcomeText = ''
+          # Welcome to the minimal project template!
+
+          This template is a simple starting point for a new flake managed projects. It includes a README.md, gitignore and a envrc to enable flake using direnv.
+
+          >Add build inputs or shell hooks to the flake.nix file to customize the devShell.  
+        '';
+      };
       rust = {
         path = ./rust;
-        description = "Rust project template";
+        description = "Flake managed rust project template";
         welcomeText = ''
           # Welcome to the Rust project template!
 
@@ -20,12 +31,12 @@
       };
       go = {
         path = ./go;
-        description = "Golang project template";
+        description = "flake managed golang project template";
         welcomeText = ''
           # Welcome to the Golang project template!
 
           This template is a simple starting point for a new Nix Go project. To setup the go project run the below command  
-          
+
           ```sh  
           go mod init github.com/username/projectname
           ```  
@@ -33,5 +44,6 @@
         '';
       };
     };
+    template.default = templates.minimal;
   };
 }
