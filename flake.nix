@@ -1,8 +1,19 @@
 {
   description = "collection of project templates";
 
-  outputs = {...}: {
+  outputs = { self, ... }: {
     templates = {
+      minimal = { 
+        path = ./minimal;
+        description = "minimal flake project";
+        welcomeText = ''
+          # Welcome to the minimal project template!
+
+          This template is a simple starting point for a new flake managed projects. It includes a README.md, gitignore and a envrc to enable flake using direnv.
+
+          >Add build inputs or shell hooks to the flake.nix file to customize the devShell.  
+        '';
+      };
       rust = {
         path = ./rust;
         description = "flake managed rust project";
@@ -33,16 +44,6 @@
         '';
       };
     };
-    templates.default = { 
-      path = ./minimal;
-      description = "minimal flake project";
-      welcomeText = ''
-        # Welcome to the minimal project template!
-
-        This template is a simple starting point for a new flake managed projects. It includes a README.md, gitignore and a envrc to enable flake using direnv.
-
-        >Add build inputs or shell hooks to the flake.nix file to customize the devShell.  
-      '';
-    };
+    templates.default = self.templates.minimal;
   };
 }
