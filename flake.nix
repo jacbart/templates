@@ -43,6 +43,18 @@
           >Edit the `flake.nix` file to rename the binary, add dependencies and build instructions.  
         '';
       };
+      node18 = {
+        path = ./node18;
+        description = "nodejs 18 flake template";
+      };
+      node20 = {
+        path = ./node20;
+        description = "nodejs 20 flake template";
+      };
+      node22 = {
+        path = ./node22;
+        description = "nodejs 22 flake template";
+      };
     };
     templates.default = self.templates.minimal;
   };
