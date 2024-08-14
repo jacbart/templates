@@ -17,8 +17,12 @@
         default = pkgs.mkShell {
           name = "node20";
           buildInputs = with pkgs; [
+            figlet
             nodejs_20
           ];
+          shellHook = ''
+            figlet nodejs v20
+          '';
         };
     });
   };

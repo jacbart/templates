@@ -17,8 +17,12 @@
         default = pkgs.mkShell {
           name = "node18";
           buildInputs = with pkgs; [
+            figlet
             nodejs_18
           ];
+          shellHook = ''
+            figlet node v18
+          '';
         };
     });
   };

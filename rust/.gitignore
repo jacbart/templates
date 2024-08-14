@@ -10,6 +10,3 @@
 
 # Ignore nix build files
 result*
-
-# Ignore BIN_NAME
-BIN_NAME

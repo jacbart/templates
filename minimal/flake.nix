@@ -40,8 +40,11 @@
       in {
         default = pkgs.mkShell {
           name = "minimal";
-          buildInputs = with pkgs; [];
+          buildInputs = with pkgs; [
+            figlet
+          ];
           shellHook = ''
+            figlet minimal
           '';
         };
     });

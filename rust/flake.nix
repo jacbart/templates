@@ -13,7 +13,7 @@
                 inherit system overlays;
             };
 
-            rustVersion = pkgs.rust-bin.stable."1.76.0".default;
+            rustVersion = pkgs.rust-bin.stable."1.79.0".default;
 
             rustPlatform = pkgs.makeRustPlatform {
                 cargo = rustVersion;
@@ -39,7 +39,11 @@
                 buildInputs = with pkgs; [
                     (rustVersion.override { extensions = [ "rust-src" ]; })
                     rust-analyzer
+                    figlet
                 ];
+                shellHook = ''
+                    figlet rust-flake
+                '';
             };
         });
 }

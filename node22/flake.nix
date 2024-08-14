@@ -17,8 +17,12 @@
         default = pkgs.mkShell {
           name = "node22";
           buildInputs = with pkgs; [
+            figlet
             nodejs_22
           ];
+          shellHook = ''
+            figlet nodejs v22
+          '';
         };
     });
   };
