@@ -48,6 +48,6 @@
           '';
         };
     });
-    # hydraJobs."PROJECT_NAME" = forAllSystems ({ pkgs }: self.packages.${pkgs.stenv.system}.default);
+    # hydraJobs."PROJECT_NAME" = forAllSystems ({ pkgs }: self.packages.${pkgs.stdenv.system}.default);
   };
 }

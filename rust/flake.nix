@@ -53,6 +53,6 @@
         '';
       };
     });
-    # hydraJobs."BIN_NAME" = forAllSystems ({ pkgs }: self.packages.${pkgs.stenv.system}.default);
+    # hydraJobs."BIN_NAME" = forAllSystems ({ pkgs }: self.packages.${pkgs.stdenv.system}.default);
   };
 }
