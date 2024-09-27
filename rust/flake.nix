@@ -8,6 +8,7 @@
 
   outputs = { self, nixpkgs, rust-overlay, ... }:
   let
+    projectRustVersion = "1.80.1";
     inherit (nixpkgs) lib;
     allSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
     overlays = [ (import rust-overlay) ];
@@ -17,7 +18,7 @@
   in {
     packages = forAllSystems ({ pkgs }:
     let
-      rustVersion = pkgs.rust-bin.stable."1.80.1".default;
+      rustVersion = pkgs.rust-bin.stable.${projectRustVersion}.default;
       rustPlatform = pkgs.makeRustPlatform {
         cargo = rustVersion;
         rustc = rustVersion;
@@ -36,7 +37,10 @@
         };
       };
     });
-    devShell = forAllSystems ({ pkgs }: {
+    devShells = forAllSystems ({ pkgs }:
+    let
+      rustVersion = pkgs.rust-bin.stable.${projectRustVersion}.default;
+    in {
       default = pkgs.mkShell {
         name = "rust";
         buildInputs = with pkgs; [
