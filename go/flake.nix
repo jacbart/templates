@@ -7,58 +7,54 @@
 
   outputs = { self, nixpkgs }: 
   let
-    supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
-    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
+    # inherit (nixpkgs) lib;
+    allSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+    forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {
+      pkgs = import nixpkgs { inherit system; };
+    });
   in {
-    packages = forAllSystems (system:
-      let
-        pkgs = nixpkgsFor.${system};
-      in {
-        mainPkg = pkgs.buildGoModule rec {
-          pname = "BIN_NAME";
-          src = pkgs.lib.cleanSource ./.;
-          version = "0.0.1";
-          # ldflags = [
-          #   "-s" "-w"
-          #   "-X 'main.Version=${version}'"
-          #   "-X 'main.Date=20xx-xx-xx'"
-          # ];
-          # vendorSha256 = sha256:;
-          vendorSha256 = pkgs.lib.fakeSha256;
+    packages = forAllSystems ({ pkgs }: {
+      default = pkgs.buildGoModule rec {
+        pname = "BIN_NAME";
+        src = pkgs.lib.cleanSource ./.;
+        version = "0.0.1";
+        # ldflags = [
+        #   "-s" "-w"
+        #   "-X 'main.Version=${version}'"
+        #   "-X 'main.Date=20xx-xx-xx'"
+        # ];
+        # vendorSha256 = sha256:;
+        vendorSha256 = pkgs.lib.fakeSha256;
 
-          meta = with pkgs.lib; {
-            mainProgram = "BIN_NAME";
-            description = "";
-            longDescription = ''
-            '';
-            homepage = "https://github.com/jacbart/BIN_NAME";
-            license = with licenses; [ mpl20 ];
-            maintainers = with maintainers; [ jacbart ];
-            platforms = platforms.all;
-          };
-        };
-    });
-    devShells = forAllSystems (system:
-      let
-        pkgs = nixpkgsFor.${system};
-      in {
-        default = pkgs.mkShell {
-          name = "golang";
-          buildInputs = with pkgs; [
-            figlet
-            go
-            gopls
-            gofumpt
-            gotools
-            go-tools
-          ];
-          shellHook = ''
-            figlet go-flake
+        meta = with pkgs.lib; {
+          mainProgram = pname;
+          description = "";
+          longDescription = ''
           '';
+          homepage = "https://github.com/jacbart/BIN_NAME";
+          license = with licenses; [ mpl20 ];
+          maintainers = with maintainers; [ jacbart ];
+          platforms = platforms.all;
         };
+      };
     });
-
-    defaultPackage = forAllSystems (system: self.packages.${system}.mainPkg);
+    devShells = forAllSystems ({ pkgs }: {
+      default = pkgs.mkShell {
+        name = "golang";
+        buildInputs = with pkgs; [
+          figlet
+          go
+          gopls
+          gofumpt
+          gotools
+          go-tools
+        ];
+        shellHook = ''
+          figlet go-flake
+        '';
+      };
+    });
+    defaultPackage = forAllSystems (system: self.packages.${system}.default);
+    # hydraJobs."BIN_NAME" = forAllSystems ({ pkgs }: self.packages.${pkgs.stenv.system}.default);
   };
 }
