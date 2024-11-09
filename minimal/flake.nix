@@ -13,35 +13,10 @@
     });
   in {
     packages = forAllSystems ({ pkgs }: {
-      default = pkgs.stdenv.mkDerivation {
-        name = "PROJECT_NAME";
-        src = null;
-        buildPhase = ''
-        '';
-        installPhase = ''
-        '';
-        meta = with pkgs.lib; {
-          mainProgram = "PROJECT_NAME";
-          description = "";
-          longDescription = ''
-          '';
-          homepage = "https://github.com/jacbart/PROJECT_NAME";
-          license = with licenses; [ mpl20 ];
-          maintainers = with maintainers; [ jacbart ];
-          platforms = platforms.all;
-        };
-      };
+      default = pkgs.callPackage ./default.nix { inherit pkgs; };
     });
     devShells = forAllSystems ({ pkgs }: {
-      default = pkgs.mkShell {
-        name = "minimal";
-        buildInputs = with pkgs; [
-          figlet
-        ];
-        shellHook = ''
-          figlet minimal
-        '';
-      };
+      default = pkgs.callPackage ./shell.nix { inherit pkgs; };
     });
     # hydraJobs."PROJECT_NAME" = forAllSystems ({ pkgs }: self.packages.${pkgs.stenv.system}.default);
   };
