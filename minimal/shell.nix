@@ -1,6 +1,4 @@
-{ pkgs ? import <nixpkgs> { } }:
-, ... }:
-
+{ pkgs ? import <nixpkgs> { }, ... }:
 pkgs.mkShell {
   name = "minimal";
   buildInputs = with pkgs; [

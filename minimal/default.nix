@@ -1,6 +1,4 @@
-{ pkgs ? import <nixpkgs> {}
-, ... }:
-
+{ pkgs ? import <nixpkgs> { }, ... }:
 pkgs.stdenv.mkDerivation {
   name = "PROJECT_NAME";
   src = null;
